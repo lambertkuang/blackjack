@@ -5,6 +5,7 @@ class window.Hand extends Backbone.Collection
 
   hit: ->
     @add(@deck.pop())
+    @last()
 
   hasAce: -> @reduce (memo, card) ->
     memo or card.get('value') is 1
@@ -21,3 +22,9 @@ class window.Hand extends Backbone.Collection
     [@minScore(), @minScore() + 10 * @hasAce()]
 
 
+###
+  some way to optimize the two scores in score
+  if hasAce is true
+
+
+###
