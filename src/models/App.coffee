@@ -5,17 +5,25 @@ class window.App extends Backbone.Model
     @set 'deck', deck = new Deck()
     @set 'playerHand', deck.dealPlayer()
     @set 'dealerHand', deck.dealDealer()
-    @on 'endGame', @endGame
+    @get('playerHand').on 'add', @evalScores, @
+    @get('playerHand').on 'endGame', @endGame, @
 
   endGame: ->
-    #evaluate win/lose
-    playerVal = @get('playerHand').get 'value'
-    dealerVal = @get('dealerHand').get 'value'
-    if playerVal is dealerVal then @tie()
-    if dealerVal > 21 or playerVal is 21 then @win()
-    if playerVal > 21 then @lose()
-    if playerVal < 21 and playerVal < dealerVal then @lose()
-    if playerVal < 21 and playerVal > dealerVal then @win()
+    if not @gameHasEnded
+      @gameHasEnded = not @gameHasEnded
+
+      @get('dealerHand').first().flip()
+      playerVal = @get('playerHand').evalScores()
+      dealerVal = @get('dealerHand').evalScores()
+      #evaluate win/lose
+      debugger;
+
+      if dealerVal > 21 or playerVal is 21 then @win()
+      else if playerVal > 21 then @lose()
+      else if playerVal < 21 and playerVal < dealerVal then @lose()
+      else if playerVal < 21 and playerVal > dealerVal then @win()
+      else if playerVal is dealerVal then @tie()
+
 
   win: ->
     alert "YOU HAVE WON"
@@ -26,6 +34,7 @@ class window.App extends Backbone.Model
   tie: ->
     alert 'You have tied.'
 
+  gameHasEnded: false
 
     ###
       when evaluating scores in endGame, tie in to optimiation in Hand.coffee
