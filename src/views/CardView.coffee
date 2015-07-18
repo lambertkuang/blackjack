@@ -1,12 +1,13 @@
 class window.CardView extends Backbone.View
+
   className: 'card'
-
-  template: _.template '<%= rankName %> of <%= suitName %>'
-
+  
   initialize: -> @render()
 
-  render: ->
+  render:  ->
     @$el.children().detach()
-    @$el.html @template @model.attributes
-    @$el.addClass 'covered' unless @model.get 'revealed'
+    if @model.get 'revealed'
+      @$el.html @model.url @model.attributes
+    else
+      @$el.html '<img src="img/card-back.png">' 
 

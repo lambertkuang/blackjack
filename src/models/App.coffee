@@ -9,14 +9,15 @@ class window.App extends Backbone.Model
     @get('playerHand').on 'endGame', @endGame, @
 
   endGame: ->
+    console.log 'END GAME'
     if not @gameHasEnded
       @gameHasEnded = not @gameHasEnded
+      console.log "gameHasEnded has changed to " + @gameHasEnded
 
       @get('dealerHand').first().flip()
       playerVal = @get('playerHand').evalScores()
       dealerVal = @get('dealerHand').evalScores()
       #evaluate win/lose
-      debugger;
 
       if dealerVal > 21 or playerVal is 21 then @win()
       else if playerVal > 21 then @lose()

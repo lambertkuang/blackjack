@@ -3,14 +3,28 @@
   border: solid 1px black;
   width: 100px;
   border-radius: 5px;
-  height: 140px;
+  height: auto;
   margin-right: 20px;
 }
 
 .covered {
-  background-color: black;
+  background-image: url('../img/card-back.png')
 }
 
 .hand {
   overflow: auto;
+}
+
+body {
+  background-image: url('../img/teak.jpeg');
+  color: white;
+}
+
+#board {
+  background-color: #004700;
+  height: 600px;
+  width: 600px;
+  padding: 10px;
+  margin-right: auto;
+  margin-left: auto;
 }
