@@ -1,0 +1,11 @@
+{
+  "name": "BLACKJACK",
+  "version": 0.0,
+  "main": "index.html",
+  "window": {
+    "toolbar": false,
+    "width": 800,
+    "height": 800,
+    "resizeable": true
+  }
+}
