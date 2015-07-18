@@ -7,7 +7,7 @@ class window.CardView extends Backbone.View
   render:  ->
     @$el.children().detach()
     if @model.get 'revealed'
-      @$el.html @model.url @model.attributes
+      @$el.html @model.url() @model.attributes
     else
       @$el.html '<img src="img/card-back.png">' 
 

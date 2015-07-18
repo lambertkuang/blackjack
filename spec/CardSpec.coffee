@@ -17,10 +17,15 @@ describe "deck constructor", ->
       hearts : 0
       clubs : 0
       diamonds : 0
-    for card in deck
-      cards[card.get 'suitName'] ++
-    assert.strictEqual cards[spades], 13
-    assert.strictEqual cards[hearts], 13
-    assert.strictEqual cards[clubs], 13
-    assert.strictEqual cards[diamonds], 13
+    for card in deck.models
+      cards[card.get 'suitName']++
+    assert.strictEqual cards['spades'], 13
+    assert.strictEqual cards['hearts'], 13
+    assert.strictEqual cards['clubs'], 13
+    assert.strictEqual cards['diamonds'], 13
 
+  it "should be able to flip", ->
+    card = deck.pop()
+    assert.ok card.get 'revealed' 
+    card.flip()
+    assert.ok not card.get 'revealed'

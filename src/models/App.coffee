@@ -25,7 +25,6 @@ class window.App extends Backbone.Model
       else if playerVal < 21 and playerVal > dealerVal then @win()
       else if playerVal is dealerVal then @tie()
 
-
   win: ->
     alert "YOU HAVE WON"
 
@@ -34,6 +33,30 @@ class window.App extends Backbone.Model
 
   tie: ->
     alert 'You have tied.'
+
+  newRound: ->
+    console.log(@get('deck').length)
+    if @get('deck').length < 4 
+      location.reload()
+    else 
+      #get rid of player hand and dealer hand
+      player = @get 'playerHand'
+      dealer = @get 'dealerHand'
+      #for all cards in hand, pop cards out of hand
+      for card in player
+        player.pop()
+      for card in dealer
+        dealer.pop()
+      #hit?? twice??
+      player.hit()
+      player.hit()
+      #not reveal 1st card in dealer hand
+      dealer.hit().flip()
+      dealer.hit()
+      # reset variables
+      @gameHasEnded = false
+
+
 
   gameHasEnded: false
 

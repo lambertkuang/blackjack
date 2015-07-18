@@ -25,10 +25,10 @@ describe 'hand', ->
 
   describe 'it should have functions', ->
     it 'should have a stand function', ->
-      assert.typeOf hand.stand 'function'
+      assert.typeOf hand.stand, 'function'
 
     it 'should have a score function', ->
-      assert.typeOf hand.scores 'function'
+      assert.typeOf hand.scores, 'function'
 
     it 'should have an eval scores function', ->
-      assert.typeOf hand.evalScores 'function'
+      assert.typeOf hand.evalScores, 'function'

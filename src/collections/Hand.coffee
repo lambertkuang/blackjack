@@ -39,9 +39,8 @@ class window.Hand extends Backbone.Collection
     else
       scoreArray[1]
 
-###
-  some way to optimize the two scores in score
-  if hasAce is true
-
-
-###
+  doubleDown: ->
+    # check system to make sure we haven't been hit
+    if @length is 2
+      @hit().set 'rotated', true
+      @trigger 'endGame'

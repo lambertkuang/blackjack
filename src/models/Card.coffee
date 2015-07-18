@@ -2,6 +2,7 @@ class window.Card extends Backbone.Model
   initialize: (params) ->
     @set
       revealed: true
+      rotated: false
       value: if !params.rank or 10 < params.rank then 10 else params.rank
       suitName: ['spades', 'diamonds', 'clubs', 'hearts'][params.suit]
       rankName: switch params.rank
@@ -15,5 +16,10 @@ class window.Card extends Backbone.Model
     @set 'revealed', !@get 'revealed'
     @
 
-  url: _.template '<img src="img/cards/<%= rankName %>-<%= suitName %>.png">'
+  url: ->
+    if not @get 'rotated'
+      return _.template '<img src="img/cards/<%= rankName %>-<%= suitName %>.png">'
+    else 
+      return _.template '<img class="doubleDown" src="img/cards/<%= rankName %>-<%= suitName %>.png">'
+      
 
